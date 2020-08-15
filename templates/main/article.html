@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <h1>{{article.title}}</h1>
+    <h3>Created At {{ article.createdAT }}</h3>
+    <h4>Written by : 
+        {% for author in article.authors.all %}
+            <a href="{% url 'get_author' author.id %}">{{author}}</a>
+        {% endfor %}
+    <!-- yha Written by mai loop kyu lgaya hai, bcoz one article can be written by many authors therefore hum article print kr rhe hai to uss article kai authors kai naam bhi to print krege naa , therefore unn naam k laane hi loop lgaya hai -->
+    </h4>
+    <p>
+        {{article.content}}
+    </p>
+{% endblock %}

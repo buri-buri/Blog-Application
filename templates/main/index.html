@@ -5,7 +5,9 @@
     <h3>Latest 5 Articles</h3>
     <ul>
         {% for i in latest_article %}
-        <li>{{i}}</li>
+        <li>
+            <a href="{% url 'get_article' i.pk %}">{{i}}</a>
+        </li>
         {% endfor %}
     </ul>
 {% endblock %}

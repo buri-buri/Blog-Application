@@ -1,7 +1,27 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,Http404
 from main import models
 # Create your views here.
+def article(request,pk):
+    try:
+        article=models.Article.objects.get(pk=pk)
+    except:
+        raise Http404
+    d={
+        'article':article
+        }
+    return render(request,'main/article.html',d)
+
+def author(request,pk):
+    try:
+        author=models.Author.objects.get(pk=pk)
+    except:
+        raise Http404
+    d={
+        'author':author
+    }
+    return render(request,'main/author.html',d)
+
 def index(request):
     n=len(models.Article.objects.all())
     latest_article=models.Article.objects.all()
